@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>快樂退休 · 配對遊戲</title>
+<style>
+  :root {
+    --bg: #fdf6ee;
+    --ink: #2c3a34;
+    --teal: #1c635c;
+    --deep: #0f3c38;
+    --gold: #b5843a;
+    --cream: #fff8ef;
+    --paper: #fffdf9;
+    --line: #e4dccb;
+    --correct: #5d8d62;
+    --wrong: #b85a45;
+  }
+  .prompt h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0;
+    color: var(--deep);
+    text-shadow:
+      0 0 2px #fff,
+      1px 1px 0 #fff,
+      -1px -1px 0 #fff,
+      1px -1px 0 #fff,
+      -1px 1px 0 #fff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans TC", "PingFang HK", "Microsoft JhengHei", sans-serif;
+   background-image: url('gamebg.jpg');
+    background-size: cover;          /* Makes the image cover the entire screen */
+    background-position: center;     /* Centers the image */
+    background-repeat: no-repeat;    /* Prevents the image from tiling */
+    background-attachment: fixed;
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 20px; }
+  header {
+    text-align: center;
+    padding: 20px 16px 12px;
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.08);
+    margin-bottom: 8px;
+  }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 8px; color: var(--deep); }
+  .subtitle { color: #3a4a44; font-size: 1.15rem; font-weight: 500; }
+  .status-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    background: white; border-radius: 20px; padding: 16px 24px; margin: 16px 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,.06); font-size: 1.5rem; font-weight: 700;
+  }
+  .timer { color: var(--gold); }
+  .score { color: var(--teal); }
+  .prompt {
+    background: white; border-radius: 24px; padding: 24px; text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08); margin-bottom: 20px;
+  }
+  .options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    margin-bottom: 8px;
+  }
+  .option {
+    background: white; border-radius: 20px; overflow: hidden; cursor: pointer;
+    border: 3px solid transparent; transition: transform .15s, border-color .15s;
+    box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  }
+  .option:hover, .option:focus { transform: translateY(-4px); border-color: var(--teal); }
+  .option img { width: 100%; height: 220px; object-fit: cover; display: block; }
+  .option.correct { border-color: var(--correct); }
+  .option.wrong { border-color: var(--wrong); }
+  .feedback {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    min-height: 48px;
+    margin: 16px auto 8px;
+    padding: 12px 20px;
+    max-width: 280px;
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  }
+  .feedback.ok { color: var(--correct); }
+  .feedback.bad { color: var(--wrong); }
+  .start-screen, .end-screen {
+    background: white; border-radius: 28px; padding: 40px 30px; text-align: center;
+    box-shadow: 0 16px 40px rgba(0,0,0,.1); max-width: 800px; margin: 40px auto;
+  }
+  .btn {
+    display: inline-block; background: var(--deep); color: #f7f1e6; border: 0;
+    padding: 16px 36px; border-radius: 999px; font-size: 1.3rem; font-weight: 800;
+    cursor: pointer; margin-top: 16px; text-decoration: none;
+  }
+  .btn:hover { background: var(--teal); }
+  .home-btn {
+    background: var(--gold);
+    color: #fff;
+    border: 0;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .home-btn:hover { background: #9a6e2e; }
+  .hidden { display: none; }
+  footer { text-align: center; color: #7a8a82; font-size: .9rem; padding: 20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>快樂退休 · 圖文配對</h1>
+    <p class="subtitle">看看文字，點選正確的圖片。答對 +1 分，答錯 −1 分。</p>
+  </header>
+
+  <div id="startScreen" class="start-screen">
+    <h2>歡迎參加！</h2>
+    <p style="font-size:1.3rem">遊戲設計人:Mabel Yeung</p>
+       遊戲時間 2 分鐘。<br>請仔細閱讀題目文字，再點選配對的圖片。<br>答對加1分，答錯扣1分（分數不會低於0）。給長者的輕鬆配對遊戲 · 內容僅供娛樂與認知練習</p>
+    <button class="btn" id="startBtn">開始遊戲</button>
+  </div>
+
+  <div id="gameScreen" class="hidden">
+    <div class="status-bar">
+      <div class="timer">剩餘時間：<span id="time">02:00</span></div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="score">分數：<span id="score">0</span></div>
+        <button class="home-btn" id="homeBtn" type="button">返回主頁</button>
+      </div>
+    </div>
+    <div class="prompt">
+      <h2 id="promptText">題目文字</h2>
+    </div>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <div id="endScreen" class="end-screen hidden">
+    <h2>遊戲結束</h2>
+    <p style="font-size:1.4rem">你的分數：<strong id="finalScore">0</strong></p>
+    <p id="endMsg" style="font-size:1.15rem"></p>
+    <button class="btn" id="restartBtn">再玩一次</button>
+  </div>
+
+
+</div>
+
+<script>
+const ITEMS = [
+  { text: "填字遊戲", img: "fwamk.jpg" },
+  { text: "數獨挑戰", img: "eKuKX.jpg" },
+  { text: "西洋棋對決", img: "tWNoe.jpg" },
+  { text: "麻將組合", img: "JrDAQ.jpg" },
+  { text: "編織毛線", img: "qy692.jpg" },
+  { text: "素描繪畫", img: "dwBDx.jpg" },
+  { text: "陶藝塑型", img: "bQOMX.jpg" },
+  { text: "折紙藝術", img: "LHHBa.jpg" },
+  { text: "刺繡工藝", img: "VD0yu.jpg" },
+  { text: "書法", img: "GKl0X.jpg" },
+  { text: "每日報紙", img: "DaELB.jpg" },
+  { text: "有聲書", img: "z3Kyy.jpg" },
+  { text: "日記撰寫", img: "U8weV.jpg" },
+  { text: "朗讀詩歌", img: "5GRI5.jpg" },
+  { text: "造訪圖書館", img: "ckjRE.jpg" },
+  { text: "歷史紀錄片", img: "K2pcE.jpg" },
+  { text: "地圖集", img: "2yjBA.jpg" },
+  { text: "食譜收集", img: "dDzCu.jpg" },
+  { text: "掛曆", img: "yiYFJ.jpg" },
+  { text: "每日待辦清單", img: "GnA5S.jpg" },
+  { text: "整理相冊", img: "JEkZB.jpg" },
+  { text: "預算規劃", img: "w8URJ.jpg" },
+  { text: "線上講座", img: "iXuBj.jpg" },
+  { text: "植物種殖", img: "aAcfo.jpg" },
+  { text: "烘焙麵包", img: "RMPyR.jpg" },
+  { text: "鳥類圖鑑識別", img: "pVlQt.jpg" },
+  { text: "星座圖譜", img: "jASfG.jpg" },
+  { text: "樂器練習", img: "0T9Nq.jpg" },
+  { text: "電話通話", img: "2tmbg.jpg" },
+  { text: "視訊聊天", img: "I0tYx.jpg" },
+  { text: "簡訊聯絡", img: "BKH6m.jpg" },
+  { text: "手寫信件", img: "ngOeL.jpg" },
+  { text: "寄送明信片", img: "BMi2r.jpg" },
+  { text: "電子郵件", img: "J4mjs.jpg" },
+  { text: "照片分享", img: "9LEGj.jpg" },
+  { text: "家庭群組聊天", img: "JAgZ4.jpg" },
+  { text: "孫子女探訪", img: "HQQBq.jpg" },
+  { text: "全家福照片", img: "Huwn1.jpg" },
+  { text: "傳承家常菜食譜", img: "mONeV.jpg" },
+  { text: "傳授技藝", img: "P7jKi.jpg" },
+  { text: "家族樹", img: "vDUTu.jpg" },
+  { text: "慶祝生日", img: "4YepW.jpg" },
+  { text: "節慶聚會", img: "2i0fF.jpg" },
+  { text: "社區中心", img: "R9a4H.jpg" },
+  { text: "長者小組聚會", img: "RiCYQ.jpg" },
+  { text: "義工服務", img: "NPjci.jpg" },
+  { text: "合唱團練習", img: "tvCJy.jpg" },
+  { text: "餵養寵物", img: "tkctm.jpg" },
+  { text: "帶狗散步", img: "RkSBJ.jpg" },
+  { text: "行山", img: "hike.jpg" },
+  { text: "太極", img: "taichi.jpg" },
+  { text: "飲茶", img: "tea.jpg" }
+];
+
+let score = 0;
+let timeLeft = 120;
+let timerId = null;
+let currentCorrect = null;
+let roundActive = true;
+const used = new Set();
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function formatTime(s) {
+  const m = Math.floor(s / 60).toString().padStart(2, "0");
+  const sec = (s % 60).toString().padStart(2, "0");
+  return `${m}:${sec}`;
+}
+
+function updateStatus() {
+  document.getElementById("time").textContent = formatTime(timeLeft);
+  document.getElementById("score").textContent = score;
+}
+
+function nextRound() {
+  if (timeLeft <= 0) return endGame();
+  roundActive = true;
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("feedback").className = "feedback";
+
+  // Pick unused item, or reset if all used
+  let pool = ITEMS.filter((_, i) => !used.has(i));
+  if (pool.length === 0) { used.clear(); pool = ITEMS; }
+  const correctItem = pool[Math.floor(Math.random() * pool.length)];
+  const correctIdx = ITEMS.indexOf(correctItem);
+  used.add(correctIdx);
+  currentCorrect = correctItem;
+
+  document.getElementById("promptText").textContent = correctItem.text;
+
+  // Pick 3 distractors
+  const others = shuffle(ITEMS.filter(it => it !== correctItem)).slice(0, 3);
+  const options = shuffle([correctItem, ...others]);
+
+  const container = document.getElementById("options");
+  container.innerHTML = "";
+  options.forEach(opt => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.tabIndex = 0;
+    div.innerHTML = `<img src="${opt.img}" alt="${opt.text}" data-img="${opt.img}">`;
+    div.onclick = () => choose(opt, div);
+    div.onkeydown = e => { if (e.key === "Enter" || e.key === " ") choose(opt, div); };
+    container.appendChild(div);
+  });
+}
+
+function choose(chosen, el) {
+  if (!roundActive) return;
+  roundActive = false;
+  const feedback = document.getElementById("feedback");
+  if (chosen === currentCorrect) {
+    score += 1;
+    el.classList.add("correct");
+    feedback.textContent = "答對了！+1";
+    feedback.className = "feedback ok";
+  } else {
+    score = Math.max(0, score - 1);
+    el.classList.add("wrong");
+    feedback.textContent = "答錯了！−1";
+    feedback.className = "feedback bad";
+    // highlight correct
+    [...document.querySelectorAll(".option")].forEach(optEl => {
+      const img = optEl.querySelector("img");
+      if (img && img.getAttribute("data-img") === currentCorrect.img) {
+        optEl.classList.add("correct");
+      }
+    });
+  }
+  updateStatus();
+  setTimeout(nextRound, 1400);
+}
+
+function startGame() {
+  score = 0;
+  timeLeft = 120;
+  used.clear();
+  updateStatus();
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("endScreen").classList.add("hidden");
+  document.getElementById("gameScreen").classList.remove("hidden");
+  nextRound();
+  timerId = setInterval(() => {
+    timeLeft--;
+    updateStatus();
+    if (timeLeft <= 0) {
+      clearInterval(timerId);
+      endGame();
+    }
+  }, 1000);
+}
+
+function endGame() {
+  clearInterval(timerId);
+  document.getElementById("gameScreen").classList.add("hidden");
+  document.getElementById("endScreen").classList.remove("hidden");
+  document.getElementById("finalScore").textContent = score;
+  const msg = score >= 15 ? "太棒了！你的觀察力很敏銳。" :
+              score >= 8  ? "做得不錯，繼續保持活躍的心態！" :
+              "慢慢來，多練習就會更熟練。";
+  document.getElementById("endMsg").textContent = msg;
+}
+
+document.getElementById("startBtn").onclick = startGame;
+document.getElementById("restartBtn").onclick = startGame;
+document.getElementById("homeBtn").onclick = function() {
+  clearInterval(timerId);
+  document.getElementById("gameScreen").classList.add("hidden");
+  document.getElementById("endScreen").classList.add("hidden");
+  document.getElementById("startScreen").classList.remove("hidden");
+};
+</script>
+</body>
+</html>

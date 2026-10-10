@@ -1,0 +1,580 @@
+<!-- 
+  Note: Place all assets in the same folder as this HTML file (no subfolders needed):
+  - style.css
+  - retirement.html
+  - elderlyintro.mp4
+  - money.jpg
+  - ill.jpg
+  (and any other images/videos referenced)
+-->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>做個開心老友記</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Centered larger game display window */
+    .game-window {
+      width: 100% !important;
+      max-width: 1100px !important;
+      height: 520px !important;
+      min-height: 400px !important;
+      margin: 20px auto 30px !important;
+      left: auto !important;
+      transform: none !important;
+      position: relative !important;
+    }
+    /* Page background using w0Bie.jpg */
+    body {
+      background-image: url('w0Bie.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="lang-switcher">
+        <select id="langSelect" onchange="changeLanguage(this.value)">
+          <option value="zh-Hant">繁體中文</option>
+          <option value="zh-Hans">简体中文</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+      <h1 data-i18n="title">做個開心老友記</h1>
+      <p class="tagline" data-i18n="tagline">融心堂 - 正面迎接黃金歲月 · 活出充實晚年 - 編者: Mabel Yeung 香港社工</p>
+    </header>
+
+    <!-- 大型遊戲視窗：直接載入 retirement.html -->
+    <div class="game-window">
+      <iframe src="retirement.html" title="退休適應遊戲" allowfullscreen></iframe>
+    </div>
+    <p class="scroll-hint" data-i18n="scroll_hint">↓ 向下捲動查看完整手冊內容 ↓</p>
+
+    <nav>
+      <ul>
+        <li><a href="#intro" data-i18n="nav_intro">認識轉變</a></li>
+        <li><a href="#retirement" data-i18n="nav_retirement">適應退休</a></li>
+        <li><a href="#illness" data-i18n="nav_illness">長期疾病</a></li>
+        <li><a href="#grief" data-i18n="nav_grief">喪親哀傷</a></li>
+        <li><a href="#depression" data-i18n="nav_depression">抑鬱症</a></li>
+        <li><a href="#dementia" data-i18n="nav_dementia">認知障礙</a></li>
+        <li><a href="#tips" data-i18n="nav_tips">促進心理健康</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero" id="top">
+    <video autoplay muted loop playsinline controls>
+      <source src="elderlyintro.mp4" type="video/mp4">
+      您的瀏覽器不支援影片播放。
+    </video>
+  </div>
+
+    <!-- 第一部分 -->
+    <section id="intro">
+      <h2 data-i18n="intro_h2">認識老年期的身心轉變</h2>
+      <p data-i18n="intro_p">進入老年是人生自然階段，生理與心理都會出現變化。正面接受並積極應對，能讓晚年更安穩快樂；若過度比較過去或消極逃避，容易產生焦慮或情緒低落。家人理解這些轉變並給予支持，有助長者建立適應力。</p>
+      
+      <h3 data-i18n="intro_h3">生理轉變重點</h3>
+      <div class="points-grid">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h4 data-i18n="card1_title">外貌與體態</h4>
+            </div>
+            <div class="flip-card-back">
+              <p data-i18n="card1_text">頭髮變白稀疏、皮膚乾皺、身高略矮、脂肪分佈改變屬正常過程。宜保護皮膚、維持儀容與適量活動，而非緬懷青春或放任不良習慣。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h4 data-i18n="card2_title">睡眠</h4>
+            </div>
+            <div class="flip-card-back">
+              <p data-i18n="card2_text">淺睡與易醒較常見。保持規律作息、舒適環境，不必強迫睡足固定時數；避免午睡過長、刺激性飲食及自行服藥，持續不適應求醫。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h4 data-i18n="card3_title">感官與神經系統</h4>
+            </div>
+            <div class="flip-card-back">
+              <p data-i18n="card3_text">視力、聽力衰退可使用合適輔助工具（眼鏡、助聽器等），勿因面子拒絕；保持活動避免孤立，突變或痛楚應及早檢查。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h4 data-i18n="card4_title">心肺、筋骨、失禁等</h4>
+            </div>
+            <div class="flip-card-back">
+              <p data-i18n="card4_text">量力進行適合活動，戒煙、均衡飲食、控制體重。失禁或關節痛應求醫，學習處理技巧，勿因尷尬減少社交。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h4 data-i18n="card5_title">記憶與學習</h4>
+            </div>
+            <div class="flip-card-back">
+              <p data-i18n="card5_text">輕微健忘常見，可用記事工具輔助；保持活動與好奇心有助維持。若出現嚴重混亂（如忘記關火、迷路），應協助就醫，排除其他問題。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h4 data-i18n="card6_title">性需要</h4>
+            </div>
+            <div class="flip-card-back">
+              <p data-i18n="card6_text">多數長者仍有情感與親密需求。消除誤解，維持健康生活、坦誠溝通，有疑難宜諮詢醫護，勿自行亂服補品。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h4 data-i18n="card7_title">持續學習</h4>
+            </div>
+            <div class="flip-card-back">
+              <p data-i18n="card7_text">晚年仍有學習能力，從生活、媒體、講座或中心活動中學習，重點在樂趣而非與人比較速度。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 第二部分 -->
+    <section id="retirement">
+      <h2 data-i18n="retirement_h2">適應退休及收入減少</h2>
+      <!-- Image expected in same folder: money.jpg -->
+      <img src="money.jpg" alt="money" class="content-img">
+      <p data-i18n="retirement_p">退休是重要轉變，帶來「失去」（收入、身份、規律等）也帶來「獲得」（時間自由、與家人相處、發展興趣等）。及早計劃、善用餘暇、維持健康生活與社交、量入為出、接受現實，能讓生活更充實。家人宜體諒並支持，勿因面子阻礙求助。</p>
+    </section>
+
+    <section id="illness">
+      <h2 data-i18n="illness_h2">處理長期疾病的壓力</h2>
+            <!-- Image expected in same folder: ill.jpg -->
+            <img src="ill.jpg" alt="長者在公園活動" class="content-img">
+      <p data-i18n="illness_p">長期疾病常見於長者，但生活習慣影響很大。維持均衡飲食、適量活動、定期檢查與積極態度有助預防及管理。面對限制時尋求醫療與社區支持，避免諱疾忌醫或過度孤立。</p>
+    </section>
+
+    <section id="grief">
+      <h2 data-i18n="grief_h2">喪親者的哀傷路程</h2>
+      <p data-i18n="grief_p">哀傷是正常反應，長短因人而異。允許表達感受、家人支持、重整生活目標、重拾興趣及擴闊社交有助適應。避免重大決定或用不良方式逃避，必要時尋求輔導。尊重逝者可從生前對待與實際能力出發，不必強求形式。</p>
+    </section>
+
+    <section id="depression">
+      <h2 data-i18n="depression_h2">抑鬱症</h2>
+      <p data-i18n="depression_p">抑鬱症是可治療的情緒病。若情緒低落持續兩週以上並影響生活（包括睡眠、食慾、興趣、精力、自我價值或有自殺想法），應及早就醫。成因包括遺傳、生理化學失衡、壓力事件與負面想法。長者常見誘因有退休轉變、身體退化、長期病、喪親、孤立等。治療包括心理治療、活動治療、藥物（需遵醫囑，不會上癮）等。家人應鼓勵求醫、給予情感與行動支持，並留意自殺徵兆。</p>
+      
+      <h3 data-i18n="methods_h3">處理方法</h3>
+      <ul>
+        <li data-i18n="method1">規律睡眠</li>
+        <li data-i18n="method2">均衡飲食</li>
+        <li data-i18n="method3">適量運動</li>
+        <li data-i18n="method4">維持社交</li>
+        <li data-i18n="method5">培養興趣與藝術活動</li>
+        <li data-i18n="method6">積極態度</li>
+        <li data-i18n="method7">表達情感</li>
+        <li data-i18n="method8">主動求助</li>
+      </ul>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <button class="assess-btn" onclick="openGDSModal()">快速自我評估</button>
+      </div>
+    </section>
+
+    <section id="dementia">
+      <h2 data-i18n="dementia_h2">認知障礙症</h2>
+  
+      <p data-i18n="dementia_p">認知障礙症是後天腦部疾病，並非正常老化。正常老化會有處理速度變慢、學習新事物較難等，但即時記憶與舊技能大致保持。真正認知障礙症會影響記憶、判斷、語言、自理等，並可能出現情緒行為變化。種類包括阿茲海默病（最常見）、血管性（與中風等有關）等。目前無法完全逆轉，但藥物可改善部分症狀，健康生活有助預防血管性類型。家人支持、參與活動、現實導向與家居安全調整很重要。護老者需注意自身壓力，適時尋求支援。</p>
+    </section>
+
+    <section id="tips">
+      <h2 data-i18n="tips_h2">如何促進良好的社交心理健康</h2>
+      <p data-i18n="tips_p">心理健康與身體健康、人際關係及認知活動互相影響。樂觀積極的心態有助身體機能與免疫力，良好社交可減少孤立風險。藝術與認知活動能穩定情緒、刺激大腦並擴闊圈子。</p>
+      
+      <h3 data-i18n="tips_h3">六個促進要訣</h3>
+      <ol class="tips-list">
+        <li data-i18n="tip1"><strong>保持樂觀積極：</strong>多數算優點與擁有的事物，控制可控制的因素（生活方式和想法），積極尋找喜歡的事，維持情緒穩定。</li>
+        <li data-i18n="tip2"><strong>多參與活動：</strong>適量活動促進代謝與適應力，避免孤立；量力做義工或發展個人興趣，並善用時間計劃每天事務。</li>
+        <li data-i18n="tip3"><strong>發展社交支援：</strong>主動維持良好人際關係，坦誠溝通，家人與朋友的支持能減低抑鬱風險並抵抗壓力。</li>
+        <li data-i18n="tip4"><strong>紓緩精神壓力：</strong>及早處理累積壓力，用鬆弛練習、興趣活動或傾訴；避免用煙酒藥物減壓，必要時尋求專業協助。</li>
+        <li data-i18n="tip5"><strong>適量運動：</strong>選擇喜歡且適合的活動，循序漸進（先易後難、先短後長），結伴進行更易堅持，有助穩定情緒與身心健康。</li>
+      </ol>
+      <p style="text-align:center; margin-top:30px; font-size:1.1rem; color:var(--teal);" data-i18n="tip6_note">（第六要訣:可按實際需要延伸發展個人興趣與持續學習）</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>做個開心老友記 </p>
+    <p class="disclaimer">本網站內容根據《長者精神健康手冊》精華重寫，僅供參考及教育用途。如有健康疑慮，請諮詢專業醫護人員。緊急情況請致電999或求助熱線。</p>
+  </footer>
+
+  <!-- GDS-15 Modal -->
+  <div id="gdsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeGDSModal()">&times;</span>
+      <h2>老人抑鬱短量表 (GDS-15)</h2>
+      <p class="modal-note">以下問題請根據<strong>過去一星期</strong>的感受作答。此為自我篩查工具，不能代替專業診斷。總分 ≥ 8 表示有抑鬱傾向，建議及早尋求專業協助。</p>
+      
+      <form id="gdsForm">
+        <!-- Questions will be dynamically generated or static below -->
+        <div class="question">
+          <p><strong>1. 你基本上對自己的生活感到滿意嗎？</strong><br>喺上個禮拜裏面，你滿唔滿意自己嘅生活呢？</p>
+          <label><input type="radio" name="q1" value="0"> 是 / 滿意</label>
+          <label><input type="radio" name="q1" value="1"> 否 / 不滿意</label>
+        </div>
+        <div class="question">
+          <p><strong>2. 你是否已放棄了很多以往的活動和嗜好？</strong><br>喺上個禮拜裡面，你有冇放棄好多以前嘅活動或者嗜好呢？</p>
+          <label><input type="radio" name="q2" value="1"> 是</label>
+          <label><input type="radio" name="q2" value="0"> 否</label>
+        </div>
+        <div class="question">
+          <p><strong>3. 你是否覺得生活空虛？</strong><br>喺過去呢個禮拜裏面，你係咪覺得生活空虛呢？</p>
+          <label><input type="radio" name="q3" value="1"> 是</label>
+          <label><input type="radio" name="q3" value="0"> 否</label>
+        </div>
+        <div class="question">
+          <p><strong>4. 你是否常常感到煩悶？</strong><br>喺上個禮拜裏面，你係咪成日覺得好煩悶呀？</p>
+          <label><input type="radio" name="q4" value="1"> 是</label>
+          <label><input type="radio" name="q4" value="0"> 否</label>
+        </div>
+        <div class="question">
+          <p><strong>5. 你是否很多時感到心情愉快呢？</strong><br>你上個禮拜心情係咪成日都咁好呢？</p>
+          <label><input type="radio" name="q5" value="0"> 是</label>
+          <label><input type="radio" name="q5" value="1"> 否</label>
+        </div>
+        <div class="question">
+          <p><strong>6. 你是否害怕將會有不好的事發生在你身上呢？</strong><br>喺上個禮拜裏面，你有無擔心有啲唔好嘅嘢會發生喺你身上呢？</p>
+          <label><input type="radio" name="q6" value="1"> 有</label>
+          <label><input type="radio" name="q6" value="0"> 冇</label>
+        </div>
+        <div class="question">
+          <p><strong>7. 你是否大部份時間感到快樂呢？</strong><br>喺上個禮拜裏面，你係咪成日都覺得開心呀？</p>
+          <label><input type="radio" name="q7" value="0"> 是</label>
+          <label><input type="radio" name="q7" value="1"> 否</label>
+        </div>
+        <div class="question">
+          <p><strong>8. 你是否常常感到無助？</strong><br>喺上個禮拜，你有冇覺得無論做乜嘢，都係冇用呢？</p>
+          <label><input type="radio" name="q8" value="1"> 是</label>
+          <label><input type="radio" name="q8" value="0"> 否</label>
+        </div>
+        <div class="question">
+          <p><strong>9. 你是否寧願留在院舍 / 屋企裏，而不出外做些有新意的事情？</strong><br>喺上個禮拜裏面，你喺咪寧願留低響老人院 / 屋企，都唔想落街做啲有新意嘅事呢？</p>
+          <label><input type="radio" name="q9" value="1"> 是</label>
+          <label><input type="radio" name="q9" value="0"> 否</label>
+        </div>
+        <div class="question">
+          <p><strong>10. 你是否覺得你比大多數人有多些記憶的問題呢？</strong><br>喺上個禮拜裏面，你有冇覺得你嘅記性比其他老人家差呢？</p>
+          <label><input type="radio" name="q10" value="1"> 有</label>
+          <label><input type="radio" name="q10" value="0"> 冇</label>
+        </div>
+        <div class="question">
+          <p><strong>11. 你認為現在活著是一件好事嗎？</strong><br>喺上個禮拜裏面，你有冇覺得做人係一件好事呢？</p>
+          <label><input type="radio" name="q11" value="0"> 是</label>
+          <label><input type="radio" name="q11" value="1"> 否</label>
+        </div>
+        <div class="question">
+          <p><strong>12. 你是否覺得自己現在一無是處呢？</strong><br>喺上個禮拜裏面，你係咪覺得自己好無用呢？</p>
+          <label><input type="radio" name="q12" value="1"> 是</label>
+          <label><input type="radio" name="q12" value="0"> 否</label>
+        </div>
+        <div class="question">
+          <p><strong>13. 你是否感到精力充足？</strong><br>喺上個禮拜，你係咪覺得精力充沛呢？</p>
+          <label><input type="radio" name="q13" value="0"> 是</label>
+          <label><input type="radio" name="q13" value="1"> 否</label>
+        </div>
+        <div class="question">
+          <p><strong>14. 你是否覺得自己的處境無望？</strong><br>喺上個禮拜裏面，你有無覺得你嘅處境係無晒希望呢？</p>
+          <label><input type="radio" name="q14" value="1"> 是</label>
+          <label><input type="radio" name="q14" value="0"> 否</label>
+        </div>
+        <div class="question">
+          <p><strong>15. 你覺得大部份的人的境況比自己好嗎？</strong><br>喺上個禮拜裏面，你係咪覺得大部份人嘅情況都好過你呢？</p>
+          <label><input type="radio" name="q15" value="1"> 是</label>
+          <label><input type="radio" name="q15" value="0"> 否</label>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px;">
+          <button type="button" class="assess-btn" onclick="calculateGDS()">計算分數</button>
+        </div>
+      </form>
+      <div id="gdsResult" class="result-box" style="display:none;"></div>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      'zh-Hant': {
+        title: '做個開心老友記',
+        tagline: '融心堂 - 正面迎接黃金歲月 · 活出充實晚年 - 編者: Mabel Yeung 香港社工',
+        nav_intro: '認識轉變',
+        nav_retirement: '適應退休',
+        nav_illness: '長期疾病',
+        nav_grief: '喪親哀傷',
+        nav_depression: '抑鬱症',
+        nav_dementia: '認知障礙',
+        nav_tips: '促進心理健康',
+        scroll_hint: '↓ 向下捲動查看完整手冊內容 ↓',
+        intro_h2: '認識老年期的身心轉變',
+        intro_p: '進入老年是人生自然階段，生理與心理都會出現變化。正面接受並積極應對，能讓晚年更安穩快樂；若過度比較過去或消極逃避，容易產生焦慮或情緒低落。家人理解這些轉變並給予支持，有助長者建立適應力。',
+        intro_h3: '生理轉變重點',
+        card1_title: '外貌與體態',
+        card1_text: '頭髮變白稀疏、皮膚乾皺、身高略矮、脂肪分佈改變屬正常過程。宜保護皮膚、維持儀容與適量活動，而非緬懷青春或放任不良習慣。',
+        card2_title: '睡眠',
+        card2_text: '淺睡與易醒較常見。保持規律作息、舒適環境，不必強迫睡足固定時數；避免午睡過長、刺激性飲食及自行服藥，持續不適應求醫。',
+        card3_title: '感官與神經系統',
+        card3_text: '視力、聽力衰退可使用合適輔助工具（眼鏡、助聽器等），勿因面子拒絕；保持活動避免孤立，突變或痛楚應及早檢查。',
+        card4_title: '心肺、筋骨、失禁等',
+        card4_text: '量力進行適合活動，戒煙、均衡飲食、控制體重。失禁或關節痛應求醫，學習處理技巧，勿因尷尬減少社交。',
+        card5_title: '記憶與學習',
+        card5_text: '輕微健忘常見，可用記事工具輔助；保持活動與好奇心有助維持。若出現嚴重混亂（如忘記關火、迷路），應協助就醫，排除其他問題。',
+        card6_title: '性需要',
+        card6_text: '多數長者仍有情感與親密需求。消除誤解，維持健康生活、坦誠溝通，有疑難宜諮詢醫護，勿自行亂服補品。',
+        card7_title: '持續學習',
+        card7_text: '晚年仍有學習能力，從生活、媒體、講座或中心活動中學習，重點在樂趣而非與人比較速度。',
+        methods_h3: '處理方法',
+        method1: '規律睡眠',
+        method2: '均衡飲食',
+        method3: '適量運動',
+        method4: '維持社交',
+        method5: '培養興趣與藝術活動',
+        method6: '積極態度',
+        method7: '表達情感',
+        method8: '主動求助',
+        tips_h3: '六個促進要訣',
+        tip1: '保持樂觀積極：多數算優點與擁有的事物，控制可控制的因素（生活方式和想法），積極尋找喜歡的事，維持情緒穩定。',
+        tip2: '多參與活動：適量活動促進代謝與適應力，避免孤立；量力做義工或發展個人興趣，並善用時間計劃每天事務。',
+        tip3: '發展社交支援：主動維持良好人際關係，坦誠溝通，家人與朋友的支持能減低抑鬱風險並抵抗壓力。',
+        tip4: '紓緩精神壓力：及早處理累積壓力，用鬆弛練習、興趣活動或傾訴；避免用煙酒藥物減壓，必要時尋求專業協助。',
+        tip5: '適量運動：選擇喜歡且適合的活動，循序漸進（先易後難、先短後長），結伴進行更易堅持，有助穩定情緒與身心健康。',
+        tip6_note: '（第六要訣:可按實際需要延伸發展個人興趣與持續學習）',
+        // Add more as needed for full coverage
+        retirement_h2: '適應退休及收入減少',
+        retirement_p: '退休是重要轉變，帶來「失去」（收入、身份、規律等）也帶來「獲得」（時間自由、與家人相處、發展興趣等）。及早計劃、善用餘暇、維持健康生活與社交、量入為出、接受現實，能讓生活更充實。家人宜體諒並支持，勿因面子阻礙求助。',
+        illness_h2: '處理長期疾病的壓力',
+        illness_p: '長期疾病常見於長者，但生活習慣影響很大。維持均衡飲食、適量活動、定期檢查與積極態度有助預防及管理。面對限制時尋求醫療與社區支持，避免諱疾忌醫或過度孤立。',
+        grief_h2: '喪親者的哀傷路程',
+        grief_p: '哀傷是正常反應，長短因人而異。允許表達感受、家人支持、重整生活目標、重拾興趣及擴闊社交有助適應。避免重大決定或用不良方式逃避，必要時尋求輔導。尊重逝者可從生前對待與實際能力出發，不必強求形式。',
+        depression_h2: '抑鬱症',
+        depression_p: '抑鬱症是可治療的情緒病。若情緒低落持續兩週以上並影響生活（包括睡眠、食慾、興趣、精力、自我價值或有自殺想法），應及早就醫。成因包括遺傳、生理化學失衡、壓力事件與負面想法。長者常見誘因有退休轉變、身體退化、長期病、喪親、孤立等。治療包括心理治療、活動治療、藥物（需遵醫囑，不會上癮）等。家人應鼓勵求醫、給予情感與行動支持，並留意自殺徵兆。',
+        dementia_h2: '認知障礙症',
+        dementia_p: '認知障礙症是後天腦部疾病，並非正常老化。正常老化會有處理速度變慢、學習新事物較難等，但即時記憶與舊技能大致保持。真正認知障礙症會影響記憶、判斷、語言、自理等，並可能出現情緒行為變化。種類包括阿茲海默病（最常見）、血管性（與中風等有關）等。目前無法完全逆轉，但藥物可改善部分症狀，健康生活有助預防血管性類型。家人支持、參與活動、現實導向與家居安全調整很重要。護老者需注意自身壓力，適時尋求支援。',
+        tips_h2: '如何促進良好的社交心理健康',
+        tips_p: '心理健康與身體健康、人際關係及認知活動互相影響。樂觀積極的心態有助身體機能與免疫力，良好社交可減少孤立風險。藝術與認知活動能穩定情緒、刺激大腦並擴闊圈子。',
+        assess_btn: '快速自我評估',
+        gds_title: '老人抑鬱短量表 (GDS-15)',
+        // Flip card titles and contents can be extended similarly
+      },
+      'zh-Hans': {
+        title: '做个开心老友记',
+        tagline: '融心堂 - 正面迎接黄金岁月 · 活出充实晚年 - 编者: Mabel Yeung 香港社工',
+        nav_intro: '认识转变',
+        nav_retirement: '适应退休',
+        nav_illness: '长期疾病',
+        nav_grief: '丧亲哀伤',
+        nav_depression: '抑郁症',
+        nav_dementia: '认知障碍',
+        nav_tips: '促进心理健康',
+        scroll_hint: '↓ 向下滚动查看完整手册内容 ↓',
+        intro_h2: '认识老年期的身心转变',
+        intro_p: '进入老年是人生自然阶段，生理与心理都会出现变化。正面接受并积极应对，能让晚年更安稳快乐；若过度比较过去或消极逃避，容易产生焦虑或情绪低落。家人理解这些转变并给予支持，有助长者建立适应力。',
+        intro_h3: '生理转变重点',
+        card1_title: '外貌与体态',
+        card1_text: '头发变白稀疏、皮肤干皱、身高略矮、脂肪分布改变属正常过程。宜保护皮肤、维持仪容与适量活动，而非缅怀青春或放任不良习惯。',
+        card2_title: '睡眠',
+        card2_text: '浅睡与易醒较常见。保持规律作息、舒适环境，不必强迫睡足固定时数；避免午睡过长、刺激性饮食及自行服药，持续不适应求医。',
+        card3_title: '感官与神经系统',
+        card3_text: '视力、听力衰退可使用合适辅助工具（眼镜、助听器等），勿因面子拒绝；保持活动避免孤立，突变或痛楚应及早检查。',
+        card4_title: '心肺、筋骨、失禁等',
+        card4_text: '量力进行适合活动，戒烟、均衡饮食、控制体重。失禁或关节痛应求医，学习处理技巧，勿因尴尬减少社交。',
+        card5_title: '记忆与学习',
+        card5_text: '轻微健忘常见，可用记事工具辅助；保持活动与好奇心有助维持。若出现严重混乱（如忘记关火、迷路），应协助就医，排除其他问题。',
+        card6_title: '性需要',
+        card6_text: '多数长者仍有情感与亲密需求。消除误解，维持健康生活、坦诚沟通，有疑难宜咨询医护，勿自行乱服补品。',
+        card7_title: '持续学习',
+        card7_text: '晚年仍有学习能力，从生活、媒体、讲座或中心活动中学习，重点在乐趣而非与人比较速度。',
+        methods_h3: '处理方法',
+        method1: '规律睡眠',
+        method2: '均衡饮食',
+        method3: '适量运动',
+        method4: '维持社交',
+        method5: '培养兴趣与艺术活动',
+        method6: '积极态度',
+        method7: '表达情感',
+        method8: '主动求助',
+        tips_h3: '六个促进要诀',
+        tip1: '保持乐观积极：多数算优点与拥有的事物，控制可控制的因素（生活方式和想法），积极寻找喜欢的事，维持情绪稳定。',
+        tip2: '多参与活动：适量活动促进代谢与适应力，避免孤立；量力做义工或发展个人兴趣，并善用时间计划每天事务。',
+        tip3: '发展社交支援：主动维持良好人际关系，坦诚沟通，家人与朋友的支持能减低抑郁风险并抵抗压力。',
+        tip4: '纾缓精神压力：及早处理累积压力，用松弛练习、兴趣活动或倾诉；避免用烟酒药物减压，必要时寻求专业协助。',
+        tip5: '适量运动：选择喜欢且适合的活动，循序渐进（先易后难、先短后长），结伴进行更易坚持，有助稳定情绪与身心健康。',
+        tip6_note: '（第六要诀:可按实际需要延伸发展个人兴趣与持续学习）',
+        retirement_h2: '适应退休及收入减少',
+        retirement_p: '退休是重要转变，带来「失去」（收入、身份、规律等）也带来「获得」（时间自由、与家人相处、发展兴趣等）。及早计划、善用余暇、维持健康生活与社交、量入为出、接受现实，能让生活更充实。家人宜体谅并支持，勿因面子阻碍求助。',
+        illness_h2: '处理长期疾病的压力',
+        illness_p: '长期疾病常见于长者，但生活习惯影响很大。维持均衡饮食、适量活动、定期检查与积极态度有助预防及管理。面对限制时寻求医疗与社区支持，避免讳疾忌医或过度孤立。',
+        grief_h2: '丧亲者的哀伤路程',
+        grief_p: '哀伤是正常反应，长短因人而异。允许表达感受、家人支持、重整生活目标、重拾兴趣及扩阔社交有助适应。避免重大决定或用不良方式逃避，必要时寻求辅导。尊重逝者可从生前对待与实际能力出发，不必强求形式。',
+        depression_h2: '抑郁症',
+        depression_p: '抑郁症是可治疗的情绪病。若情绪低落持续两周以上并影响生活（包括睡眠、食欲、兴趣、精力、自我价值或有自杀想法），应及早就医。成因包括遗传、生理化学失衡、压力事件与负面想法。长者常见诱因有退休转变、身体退化、长期病、丧亲、孤立等。治疗包括心理治疗、活动治疗、药物（需遵医嘱，不会上瘾）等。家人应鼓励求医、给予情感与行动支持，并留意自杀征兆。',
+        dementia_h2: '认知障碍症',
+        dementia_p: '认知障碍症是后天脑部疾病，并非正常老化。正常老化会有处理速度变慢、学习新事物较难等，但即时记忆与旧技能大致保持。真正认知障碍症会影响记忆、判断、语言、自理等，并可能出现情绪行为变化。种类包括阿尔茨海默病（最常见）、血管性（与中风等有关）等。目前无法完全逆转，但药物可改善部分症状，健康生活有助预防血管性类型。家人支持、参与活动、现实导向与家居安全调整很重要。护老者需注意自身压力，适时寻求支援。',
+        tips_h2: '如何促进良好的社交心理健康',
+        tips_p: '心理健康与身体健康、人际关系及认知活动互相影响。乐观积极的心态有助身体机能与免疫力，良好社交可减少孤立风险。艺术与认知活动能稳定情绪、刺激大脑并扩阔圈子。',
+        assess_btn: '快速自我评估',
+        gds_title: '老人抑郁短量表 (GDS-15)',
+      },
+      'en': {
+        title: 'Be a Happy Old Friend',
+        tagline: 'Rong Xin Tang - Embrace the Golden Years Positively · Live a Fulfilling Later Life - Editor: Mabel Yeung, Hong Kong Social Worker',
+        nav_intro: 'Understanding Changes',
+        nav_retirement: 'Adapting to Retirement',
+        nav_illness: 'Chronic Illness',
+        nav_grief: 'Grief & Bereavement',
+        nav_depression: 'Depression',
+        nav_dementia: 'Dementia',
+        nav_tips: 'Promoting Mental Health',
+        scroll_hint: '↓ Scroll down to view the full handbook content ↓',
+        intro_h2: 'Understanding Physical and Psychological Changes in Old Age',
+        intro_p: 'Entering old age is a natural stage of life, with changes in both body and mind. Positive acceptance and active coping can make later life more stable and happy; excessive comparison with the past or passive avoidance can easily lead to anxiety or low mood. Family understanding and support help seniors build adaptability.',
+        intro_h3: 'Key Physical Changes',
+        card1_title: 'Appearance & Posture',
+        card1_text: 'Greying and thinning hair, dry wrinkled skin, slight height loss, and changes in fat distribution are normal. Protect the skin, maintain appearance, and stay moderately active rather than reminiscing about youth or neglecting good habits.',
+        card2_title: 'Sleep',
+        card2_text: 'Lighter sleep and waking easily are common. Keep a regular routine and comfortable environment; do not force a fixed number of hours. Avoid long naps, stimulating food/drink, and self-medication. Seek medical advice if problems persist.',
+        card3_title: 'Senses & Nervous System',
+        card3_text: 'Declining vision and hearing can be aided with glasses, hearing aids, etc. Do not refuse help due to face. Stay active to avoid isolation. Seek early checks for sudden changes or pain.',
+        card4_title: 'Heart, Lungs, Muscles, Incontinence',
+        card4_text: 'Do suitable activities within ability, quit smoking, eat balanced meals, and control weight. Seek medical help for incontinence or joint pain, learn management skills, and do not reduce social activities due to embarrassment.',
+        card5_title: 'Memory & Learning',
+        card5_text: 'Mild forgetfulness is common; use note tools. Stay active and curious. If severe confusion occurs (e.g. forgetting to turn off the stove, getting lost), assist in seeking medical help to rule out other issues.',
+        card6_title: 'Sexual Needs',
+        card6_text: 'Most seniors still have emotional and intimacy needs. Dispel misconceptions, maintain a healthy lifestyle, communicate openly, and consult healthcare professionals if needed. Do not take unregulated supplements.',
+        card7_title: 'Lifelong Learning',
+        card7_text: 'Learning ability continues in later life. Learn from daily life, media, talks, or centre activities. Focus on enjoyment rather than comparing speed with others.',
+        methods_h3: 'Coping Methods',
+        method1: 'Regular sleep',
+        method2: 'Balanced diet',
+        method3: 'Moderate exercise',
+        method4: 'Maintain social connections',
+        method5: 'Develop interests and art activities',
+        method6: 'Positive attitude',
+        method7: 'Express emotions',
+        method8: 'Seek help proactively',
+        tips_h3: 'Six Tips for Promotion',
+        tip1: 'Stay optimistic and positive: Count your strengths and what you have, control what you can (lifestyle and thoughts), actively seek things you enjoy, and keep emotions stable.',
+        tip2: 'Participate in activities: Moderate activity boosts metabolism and adaptability and avoids isolation. Do volunteer work or pursue interests within your ability, and plan daily tasks.',
+        tip3: 'Build social support: Actively maintain good relationships and communicate openly. Support from family and friends lowers depression risk and helps resist stress.',
+        tip4: 'Relieve stress: Address accumulated stress early with relaxation exercises, hobbies, or talking. Avoid using smoking, alcohol, or drugs. Seek professional help if needed.',
+        tip5: 'Exercise moderately: Choose enjoyable and suitable activities, progress gradually (easy to hard, short to long), and exercise with others for better adherence. Helps stabilise mood and health.',
+        tip6_note: '(Sixth tip: Extend personal interests and continuous learning according to actual needs)',
+        retirement_h2: 'Adapting to Retirement and Reduced Income',
+        retirement_p: 'Retirement is an important transition, bringing both “losses” (income, identity, routine, etc.) and “gains” (free time, time with family, developing interests, etc.). Planning early, making good use of leisure, maintaining a healthy lifestyle and social connections, living within means, and accepting reality can make life more fulfilling. Families should be understanding and supportive, and not let face issues hinder seeking help.',
+        illness_h2: 'Coping with the Stress of Chronic Illness',
+        illness_p: 'Chronic illnesses are common among seniors, but lifestyle habits have a big impact. Maintaining a balanced diet, moderate activity, regular check-ups, and a positive attitude help prevent and manage them. When facing limitations, seek medical and community support; avoid hiding illness or becoming overly isolated.',
+        grief_h2: 'The Grief Journey of the Bereaved',
+        grief_p: 'Grief is a normal reaction, and its length varies from person to person. Allowing expression of feelings, family support, reorganizing life goals, resuming interests, and expanding social circles help adaptation. Avoid major decisions or unhealthy coping methods; seek counseling if needed. Respect for the deceased can start from how they were treated in life and practical capacity, without insisting on formalities.',
+        depression_h2: 'Depression',
+        depression_p: 'Depression is a treatable mood disorder. If low mood lasts more than two weeks and affects life (including sleep, appetite, interest, energy, self-worth, or suicidal thoughts), seek medical help early. Causes include genetics, biochemical imbalance, stressful events, and negative thoughts. Common triggers for seniors include retirement changes, physical decline, chronic illness, bereavement, and isolation. Treatments include psychotherapy, activity therapy, and medication (follow doctor’s advice, not addictive). Families should encourage seeking help, provide emotional and practical support, and watch for suicidal signs.',
+        dementia_h2: 'Dementia',
+        dementia_p: 'Dementia is an acquired brain disease, not normal aging. Normal aging involves slower processing and difficulty learning new things, but immediate memory and old skills are largely preserved. True dementia affects memory, judgment, language, self-care, etc., and may include emotional and behavioral changes. Types include Alzheimer’s (most common) and vascular (related to stroke, etc.). It cannot be fully reversed, but medication can improve some symptoms, and a healthy lifestyle helps prevent vascular types. Family support, activity participation, reality orientation, and home safety adjustments are important. Caregivers should mind their own stress and seek support when needed.',
+        tips_h2: 'How to Promote Good Social and Mental Health',
+        tips_p: 'Mental health interacts with physical health, relationships, and cognitive activities. An optimistic and positive mindset supports bodily functions and immunity; good social connections reduce isolation risk. Art and cognitive activities stabilize mood, stimulate the brain, and expand social circles.',
+        assess_btn: 'Quick Self-Assessment',
+        gds_title: 'Geriatric Depression Scale (GDS-15)',
+      }
+    };
+
+    function changeLanguage(lang) {
+      document.documentElement.lang = lang === 'en' ? 'en' : (lang === 'zh-Hans' ? 'zh-CN' : 'zh-Hant');
+      const dict = translations[lang] || translations['zh-Hant'];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = dict[key];
+          } else {
+            el.textContent = dict[key];
+          }
+        }
+      });
+      // Special for buttons
+      const assessBtns = document.querySelectorAll('.assess-btn');
+      assessBtns.forEach(btn => {
+        if (btn.textContent.includes('評估') || btn.textContent.includes('评估') || btn.textContent.includes('Assessment')) {
+          btn.textContent = dict.assess_btn || '快速自我評估';
+        }
+      });
+      // Update modal title if open
+      const modalH2 = document.querySelector('#gdsModal h2');
+      if (modalH2 && dict.gds_title) modalH2.textContent = dict.gds_title;
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('zh-Hant');
+    });
+
+    function openGDSModal() {
+      document.getElementById('gdsModal').style.display = 'block';
+      document.getElementById('gdsResult').style.display = 'none';
+    }
+    function closeGDSModal() {
+      document.getElementById('gdsModal').style.display = 'none';
+    }
+    function calculateGDS() {
+      let score = 0;
+      let answered = 0;
+      for (let i = 1; i <= 15; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected) {
+          score += parseInt(selected.value);
+          answered++;
+        }
+      }
+      const resultDiv = document.getElementById('gdsResult');
+      if (answered === 0) {
+        resultDiv.innerHTML = '<p>請至少回答部分題目。</p>';
+      } else {
+        let message = `<p>您的總分：<strong>${score}</strong> / ${answered} 題</p>`;
+        if (score >= 8) {
+          message += '<p style="color:#B22222;"><strong>總分 ≥ 8，指示有抑鬱的傾向。</strong><br>建議及早諮詢醫生、社工或心理健康專業人員，尋求進一步評估與協助。抑鬱症是可以治療的。</p>';
+        } else {
+          message += '<p style="color:#1A535C;">目前分數未達提示抑鬱傾向的範圍。請繼續保持積極生活，如有持續情緒困擾，仍建議尋求專業意見。</p>';
+        }
+        message += '<p style="font-size:0.85rem; margin-top:10px; opacity:0.8;">此為篩查工具，不能取代專業診斷。緊急情況請立即求助。</p>';
+        resultDiv.innerHTML = message;
+      }
+      resultDiv.style.display = 'block';
+      resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    window.onclick = function(event) {
+      const modal = document.getElementById('gdsModal');
+      if (event.target == modal) {
+        closeGDSModal();
+      }
+    }
+  </script>
+</body>
+</html>
